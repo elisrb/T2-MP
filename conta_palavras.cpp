@@ -23,6 +23,7 @@ string VerificaPalavras(string arquivo) {
     string file_contents;
     while(getline(file, str)) {
         file_contents += str;
+        file_contents.push_back(' ');
     }
     return(file_contents);
 }
