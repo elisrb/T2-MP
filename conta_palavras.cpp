@@ -34,6 +34,20 @@ vector<string> split(string file_contents) {
     return tokens;
 }
 
+bool comp(string a, string b) {
+        string lower_a = "", lower_b = "";
+        char c;
+        for(char i : a) {
+            c = tolower(i);
+            lower_a += c;
+        }
+        for(char i : b) {
+            c = tolower(i);
+            lower_b += c;
+        }
+        return(lower_a < lower_b);
+}
+
 string VerificaPalavras(string arquivo) {
     ifstream file(arquivo);
     string str;
@@ -46,7 +60,7 @@ string VerificaPalavras(string arquivo) {
 
     vector<string> tokens = split(file_contents);
 
-    sort(tokens.begin(), tokens.end());
+    sort(tokens.begin(), tokens.end(), comp);
 
     string ans = "";
     for(string i : tokens) {
