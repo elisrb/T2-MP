@@ -15,6 +15,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <algorithm>
 
 using namespace std;
 
@@ -38,6 +39,7 @@ string VerificaPalavras(string arquivo) {
         file_contents.erase(0, pos + delimiter.length());
     }
     tokens.push_back(file_contents);
+    sort(tokens.begin(), tokens.end());
 
     string ans = "";
     for(string i : tokens) {
