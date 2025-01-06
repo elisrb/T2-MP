@@ -1,0 +1,216 @@
+==61944== Memcheck, a memory error detector
+==61944== Copyright (C) 2002-2024, and GNU GPL'd, by Julian Seward et al.
+==61944== Using Valgrind-3.24.0.GIT-lbmacos and LibVEX; rerun with -h for copyright info
+==61944== Command: ./testa_velha
+==61944== Parent PID: 61921
+==61944== 
+==61944== Syscall param map_with_linking_np(link_info) points to uninitialised byte(s)
+==61944==    at 0x100202D2E: __map_with_linking_np (in /usr/lib/dyld)
+==61944==    by 0x1001B788A: dyld4::setUpPageInLinkingRegions(dyld4::RuntimeState&, dyld4::Loader const*, unsigned long, unsigned short, unsigned short, bool, dyld3::Array<dyld4::PageInLinkingRange> const&, dyld3::Array<void const*> const&) (in /usr/lib/dyld)
+==61944==    by 0x1001B7221: invocation function for block in dyld4::Loader::setUpPageInLinking(Diagnostics&, dyld4::RuntimeState&, unsigned long, unsigned long long, dyld3::Array<void const*> const&) const (in /usr/lib/dyld)
+==61944==    by 0x1001B6F94: dyld4::Loader::setUpPageInLinking(Diagnostics&, dyld4::RuntimeState&, unsigned long, unsigned long long, dyld3::Array<void const*> const&) const (in /usr/lib/dyld)
+==61944==    by 0x1001B7A08: dyld4::Loader::applyFixupsGeneric(Diagnostics&, dyld4::RuntimeState&, unsigned long long, dyld3::Array<void const*> const&, dyld3::Array<void const*> const&, bool, dyld3::Array<dyld4::Loader::MissingFlatLazySymbol> const&) const (in /usr/lib/dyld)
+==61944==    by 0x1001BD212: dyld4::JustInTimeLoader::applyFixups(Diagnostics&, dyld4::RuntimeState&, dyld4::DyldCacheDataConstLazyScopedWriter&, bool) const (in /usr/lib/dyld)
+==61944==    by 0x1001A4DBC: dyld4::prepare(dyld4::APIs&, dyld3::MachOAnalyzer const*) (in /usr/lib/dyld)
+==61944==    by 0x1001A42FE: (below main) (in /usr/lib/dyld)
+==61944==  Address 0x108281fe0 is on thread 1's stack
+==61944==  in frame #1, created by dyld4::setUpPageInLinkingRegions(dyld4::RuntimeState&, dyld4::Loader const*, unsigned long, unsigned short, unsigned short, bool, dyld3::Array<dyld4::PageInLinkingRange> const&, dyld3::Array<void const*> const&) (???:)
+==61944== 
+==61944== Invalid read of size 32
+==61944==    at 0x7FF80BEAAE8A: ???
+==61944==    by 0x7FF80BD2A8A9: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==61944==    by 0x7FF80BD491C7: fwrite (in /usr/lib/system/libsystem_c.dylib)
+==61944==    by 0x10006F885: ??? (in ./testa_velha)
+==61944==    by 0x10006F700: ??? (in ./testa_velha)
+==61944==    by 0x10006F429: ??? (in ./testa_velha)
+==61944==    by 0x10000139D: ??? (in ./testa_velha)
+==61944==    by 0x10006D1A8: ??? (in ./testa_velha)
+==61944==    by 0x1000150E4: ??? (in ./testa_velha)
+==61944==    by 0x10002B149: ??? (in ./testa_velha)
+==61944==    by 0x100003154: ??? (in ./testa_velha)
+==61944==    by 0x10000247F: ??? (in ./testa_velha)
+==61944==  Address 0x10084f860 is 0 bytes after a block of size 80 alloc'd
+==61944==    at 0x10029C445: operator new(unsigned long) (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BDC1C82: std::__1::basic_string<char, std::__1::char_traits<char>, std::__1::allocator<char> >::__init(unsigned long, char) (in /usr/lib/libc++.1.dylib)
+==61944==    by 0x10004CB0A: ??? (in ./testa_velha)
+==61944==    by 0x10004C845: ??? (in ./testa_velha)
+==61944==    by 0x10006D190: ??? (in ./testa_velha)
+==61944==    by 0x1000150E4: ??? (in ./testa_velha)
+==61944==    by 0x10002B149: ??? (in ./testa_velha)
+==61944==    by 0x100003154: ??? (in ./testa_velha)
+==61944==    by 0x10000247F: ??? (in ./testa_velha)
+==61944==    by 0x10004E5EC: ??? (in ./testa_velha)
+==61944==    by 0x1000468F6: ??? (in ./testa_velha)
+==61944==    by 0x10000F5F1: ??? (in ./testa_velha)
+==61944== 
+==61944== Conditional jump or move depends on uninitialised value(s)
+==61944==    at 0x7FF80BEAAE5F: ???
+==61944==    by 0x7FF80BD2A8A9: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==61944==    by 0x7FF80BD491C7: fwrite (in /usr/lib/system/libsystem_c.dylib)
+==61944==    by 0x7FF80BDDDF67: std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::__pad_and_output[abi:ue170006]<char, std::__1::char_traits<char> >(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, char const*, char const*, char const*, std::__1::ios_base&, char) (in /usr/lib/libc++.1.dylib)
+==61944==    by 0x7FF80BDDD568: std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > std::__1::num_put<char, std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> > >::__do_put_integral[abi:ue170006]<unsigned long>(std::__1::ostreambuf_iterator<char, std::__1::char_traits<char> >, std::__1::ios_base&, char, unsigned long, char const*) const (in /usr/lib/libc++.1.dylib)
+==61944==    by 0x7FF80BDCCE9B: std::__1::basic_ostream<char, std::__1::char_traits<char> >::operator<<(unsigned long) (in /usr/lib/libc++.1.dylib)
+==61944==    by 0x1000091BF: ??? (in ./testa_velha)
+==61944==    by 0x10006A36D: ??? (in ./testa_velha)
+==61944==    by 0x1000150F5: ??? (in ./testa_velha)
+==61944==    by 0x10002B149: ??? (in ./testa_velha)
+==61944==    by 0x100003154: ??? (in ./testa_velha)
+==61944==    by 0x10000247F: ??? (in ./testa_velha)
+==61944== 
+==61944== Conditional jump or move depends on uninitialised value(s)
+==61944==    at 0x7FF80BEAAE5F: ???
+==61944==    by 0x7FF80BD2A8A9: __sfvwrite (in /usr/lib/system/libsystem_c.dylib)
+==61944==    by 0x7FF80BD491C7: fwrite (in /usr/lib/system/libsystem_c.dylib)
+==61944==    by 0x10006F885: ??? (in ./testa_velha)
+==61944==    by 0x10006F700: ??? (in ./testa_velha)
+==61944==    by 0x10006F429: ??? (in ./testa_velha)
+==61944==    by 0x10000139D: ??? (in ./testa_velha)
+==61944==    by 0x1000091DC: ??? (in ./testa_velha)
+==61944==    by 0x10006A36D: ??? (in ./testa_velha)
+==61944==    by 0x1000150F5: ??? (in ./testa_velha)
+==61944==    by 0x10002B149: ??? (in ./testa_velha)
+==61944==    by 0x100003154: ??? (in ./testa_velha)
+==61944== 
+==61944== 
+==61944== HEAP SUMMARY:
+==61944==     in use at exit: 12,889 bytes in 176 blocks
+==61944==   total heap usage: 433 allocs, 257 frees, 31,032 bytes allocated
+==61944== 
+==61944== 24 bytes in 1 blocks are possibly lost in loss record 5 of 35
+==61944==    at 0x1002A024D: calloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAAD98A: NXHashInsert (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAADA5E: _NXHashRehashToCapacity (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAD9BE: NXHashInsert (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAC1D39: NXCreateHashTable (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAC1B36: NXCreateMapTable (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAC5FF: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944== 
+==61944== 48 bytes in 1 blocks are possibly lost in loss record 13 of 35
+==61944==    at 0x10029BDD6: malloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAC1BEE: NXCreateMapTable (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAC5FF: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BCDC3F3: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==61944==    by 0x7FF80BCE96EA: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==61944==    by 0x7FF81911E870: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==61944== 
+==61944== 64 bytes in 2 blocks are definitely lost in loss record 19 of 35
+==61944==    at 0x1002A024D: calloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAAE4AB: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE55D: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE55D: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAD016: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BCDC3F3: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==61944== 
+==61944== 64 bytes in 2 blocks are definitely lost in loss record 20 of 35
+==61944==    at 0x1002A024D: calloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAAE4AB: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE580: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE55D: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE55D: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAD016: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944== 
+==61944== 160 bytes in 5 blocks are definitely lost in loss record 25 of 35
+==61944==    at 0x1002A024D: calloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAAE4AB: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE580: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE55D: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAD016: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BCDC3F3: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==61944== 
+==61944== 208 (160 direct, 48 indirect) bytes in 5 blocks are definitely lost in loss record 26 of 35
+==61944==    at 0x1002A024D: calloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAAE4AB: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE55D: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAD016: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BCDC3F3: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==61944==    by 0x7FF80BCE96EA: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==61944== 
+==61944== 528 bytes in 1 blocks are possibly lost in loss record 30 of 35
+==61944==    at 0x10029BDD6: malloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAC1BEE: NXCreateMapTable (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAADBAB: protocols() (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAACB33: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BCDC3F3: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==61944==    by 0x7FF80BCE96EA: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==61944== 
+==61944== 1,920 bytes in 60 blocks are definitely lost in loss record 33 of 35
+==61944==    at 0x1002A024D: calloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAAE4AB: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAD016: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BCDC3F3: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==61944==    by 0x7FF80BCE96EA: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==61944==    by 0x7FF81911E870: libSystem_initializer (in /usr/lib/libSystem.B.dylib)
+==61944== 
+==61944== 1,920 bytes in 60 blocks are definitely lost in loss record 34 of 35
+==61944==    at 0x1002A024D: calloc (in /usr/local/Cellar/valgrind/HEAD-ef8cbb3/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==61944==    by 0x7FF80BAAE4AB: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAE580: realizeClassWithoutSwift(objc_class*, objc_class*) (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAD016: map_images_nolock (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BAAB7F8: map_images (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x1001B27AB: invocation function for block in dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int)))::$_8::operator()() const (in /usr/lib/dyld)
+==61944==    by 0x1001AADB1: dyld4::RuntimeLocks::withLoadersReadLock(void ( block_pointer)()) (in /usr/lib/dyld)
+==61944==    by 0x1001B043D: dyld4::RuntimeState::setObjCNotifiers(void (*)(char const*, mach_header const*), void (*)(mach_header const*, void*, mach_header const*, void const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*), void (*)(_dyld_objc_notify_mapped_info const*), void (*)(unsigned int, _dyld_objc_notify_mapped_info const*, void ( block_pointer)(unsigned int))) (in /usr/lib/dyld)
+==61944==    by 0x1001D1AE5: dyld4::APIs::_dyld_objc_register_callbacks(_dyld_objc_callbacks const*) (in /usr/lib/dyld)
+==61944==    by 0x7FF80BAAB26E: _objc_init (in /usr/lib/libobjc.A.dylib)
+==61944==    by 0x7FF80BCDC3F3: _os_object_init (in /usr/lib/system/libdispatch.dylib)
+==61944==    by 0x7FF80BCE96EA: libdispatch_init (in /usr/lib/system/libdispatch.dylib)
+==61944== 
+==61944== LEAK SUMMARY:
+==61944==    definitely lost: 4,288 bytes in 134 blocks
+==61944==    indirectly lost: 48 bytes in 1 blocks
+==61944==      possibly lost: 600 bytes in 3 blocks
+==61944==    still reachable: 7,953 bytes in 38 blocks
+==61944==         suppressed: 0 bytes in 0 blocks
+==61944== Reachable blocks (those to which a pointer was found) are not shown.
+==61944== To see them, rerun with: --leak-check=full --show-leak-kinds=all
+==61944== 
+==61944== Use --track-origins=yes to see where uninitialised values come from
+==61944== For lists of detected and suppressed errors, rerun with: -s
+==61944== ERROR SUMMARY: 16 errors from 13 contexts (suppressed: 1050 from 44)
