@@ -12,5 +12,5 @@
 TEST_CASE("Testa conta palavras", "[single-file]") {
 	string teste1 = "input1.txt";
 
-	REQUIRE(VerificaPalavras(teste1) == "Este/é/o/texto/Esta/é/a/segunda/linha/");
+	REQUIRE(VerificaPalavras(teste1) == "Este: 1\né: 1\no: 1\ntexto: 1\nEsta: 1\na: 1\nsegunda: 1\nlinha: 1\n");
 }

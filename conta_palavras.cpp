@@ -42,8 +42,7 @@ string VerificaPalavras(string arquivo) {
     string ans = "";
     for(string i : tokens) {
         ans += i;
-        ans += '/';
+        ans += ": 1\n";
     }
-
     return(ans);
 }
