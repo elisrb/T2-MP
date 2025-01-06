@@ -16,8 +16,23 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <ctype.h>
 
 using namespace std;
+
+vector<string> split(string file_contents) {
+    vector<string> tokens;
+    size_t pos = 0;
+    string token;
+    string delimiter = " ";
+    while((pos = file_contents.find(delimiter)) != string::npos) {
+        token = file_contents.substr(0, pos);
+        tokens.push_back(token);
+        file_contents.erase(0, pos + delimiter.length());
+    }
+    tokens.push_back(file_contents);
+    return tokens;
+}
 
 string VerificaPalavras(string arquivo) {
     ifstream file(arquivo);
@@ -29,16 +44,8 @@ string VerificaPalavras(string arquivo) {
     }
     file_contents.pop_back();
 
-    vector<string> tokens;
-    size_t pos = 0;
-    string token;
-    string delimiter = " ";
-    while((pos = file_contents.find(delimiter)) != string::npos) {
-        token = file_contents.substr(0, pos);
-        tokens.push_back(token);
-        file_contents.erase(0, pos + delimiter.length());
-    }
-    tokens.push_back(file_contents);
+    vector<string> tokens = split(file_contents);
+
     sort(tokens.begin(), tokens.end());
 
     string ans = "";
