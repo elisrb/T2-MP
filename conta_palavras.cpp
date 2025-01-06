@@ -26,6 +26,7 @@ string VerificaPalavras(string arquivo) {
         file_contents += str;
         file_contents.push_back(' ');
     }
+    file_contents.pop_back();
 
     vector<string> tokens;
     size_t pos = 0;
