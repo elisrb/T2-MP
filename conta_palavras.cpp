@@ -36,18 +36,25 @@ vector<wstring> split_string(string file_contents) {
     return tokens;
 }
 
+wchar_t remove_acento(wchar_t c) {
+    if(c == L'ã' or c == L'á' or c == L'â' or c == L'à') return L'a';
+    if(c == L'é' or c == L'ê') return L'e';
+    if(c == L'í') return L'i';
+    if(c == L'õ' or c == L'ó' or c == L'ô') return L'o';
+    if(c == L'ú') return L'u';
+    if(c == L'ñ') return L'n';
+    return c;
+}
+
 bool comp(wstring a, wstring b) {
-        wstring lower_a = L"", lower_b = L"";
-        wchar_t c;
-        for(wchar_t i : a) {
-            c = tolower(i);
-            lower_a += c;
-        }
-        for(wchar_t i : b) {
-            c = tolower(i);
-            lower_b += c;
-        }
-        return(lower_a < lower_b);
+    wstring comp_a = L"", comp_b = L"";
+    for(wchar_t i : a) {
+        comp_a += remove_acento(tolower(i));
+    }
+    for(wchar_t i : b) {
+        comp_b += remove_acento(tolower(i));
+    }
+    return(comp_a < comp_b);
 }
 
 wstring VerificaPalavras(string arquivo) {
