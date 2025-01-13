@@ -15,42 +15,45 @@
 #include <fstream>
 #include <string>
 #include <vector>
-#include <algorithm>
-#include <ctype.h>
+#include <codecvt>
 
 using namespace std;
 
-vector<string> split(string file_contents) {
-    vector<string> tokens;
+vector<wstring> split_string(string file_contents) {
     size_t pos = 0;
-    string token;
     string delimiter = " ";
+    
+    vector<wstring> tokens;
+    wstring token;
+    wstring_convert<codecvt_utf8<wchar_t>> converter;
+
     while((pos = file_contents.find(delimiter)) != string::npos) {
-        token = file_contents.substr(0, pos);
+        token = converter.from_bytes(file_contents.substr(0, pos));
         tokens.push_back(token);
         file_contents.erase(0, pos + delimiter.length());
     }
-    tokens.push_back(file_contents);
+    tokens.push_back(converter.from_bytes(file_contents));
     return tokens;
 }
 
-bool comp(string a, string b) {
-        string lower_a = "", lower_b = "";
-        char c;
-        for(char i : a) {
+bool comp(wstring a, wstring b) {
+        wstring lower_a = L"", lower_b = L"";
+        wchar_t c;
+        for(wchar_t i : a) {
             c = tolower(i);
             lower_a += c;
         }
-        for(char i : b) {
+        for(wchar_t i : b) {
             c = tolower(i);
             lower_b += c;
         }
         return(lower_a < lower_b);
 }
 
-string VerificaPalavras(string arquivo) {
+wstring VerificaPalavras(string arquivo) {
     ifstream file(arquivo);
     string str;
+
     string file_contents;
     while(getline(file, str)) {
         file_contents += str;
@@ -58,14 +61,14 @@ string VerificaPalavras(string arquivo) {
     }
     file_contents.pop_back();
 
-    vector<string> tokens = split(file_contents);
+    vector<wstring> tokens = split_string(file_contents);
 
     sort(tokens.begin(), tokens.end(), comp);
 
-    string ans = "";
-    for(string i : tokens) {
+    wstring ans = L"";
+    for(wstring i : tokens) {
         ans += i;
-        ans += ": 1\n";
+        ans += L": 1\n";
     }
     return(ans);
 }

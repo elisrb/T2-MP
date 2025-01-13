@@ -1,6 +1,11 @@
 // Copyright 2024 Elis Rodrigues Borges
 
+#ifndef CONTA_PALAVRAS_HPP_
+#define CONTA_PALAVRAS_HPP_
+
 #include <string>
 using namespace std;
 
-string VerificaPalavras(string arquivo);
+wstring VerificaPalavras(string arquivo);
+
+#endif
