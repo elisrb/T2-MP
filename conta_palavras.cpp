@@ -36,20 +36,25 @@ string read_file(string arquivo){
     return file_contents;
 }
 
-vector<wstring> split_string(string file_contents) {
-    size_t pos = 0;
-    string delimiter = " ";
+vector<wstring> split_string(string texto) {
+    int pos = 0;
+    char separador = ' ';
     
     vector<wstring> tokens;
-    wstring token;
+    string token;
 
-    while((pos = file_contents.find(delimiter)) != string::npos) {
-        token = converter.from_bytes(file_contents.substr(0, pos));
-        tokens.push_back(token);
-        file_contents.erase(0, pos + delimiter.length());
+    while(pos < texto.size()){
+        token = "";
+        while(pos < texto.size() and texto[pos] == separador){
+            pos++;
+        }
+        while(pos < texto.size() and texto[pos] != separador){
+            token += texto[pos];
+            pos++;
+        }
+        tokens.push_back(converter.from_bytes(token));
     }
-    tokens.push_back(converter.from_bytes(file_contents));
-    
+
     return tokens;
 }
 

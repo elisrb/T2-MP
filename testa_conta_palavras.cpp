@@ -9,7 +9,7 @@
 #define CATCH_CONFIG_MAIN
 #include "catch.hpp"
 
-TEST_CASE("Testa conta palavras", "[single-file]") {
+TEST_CASE("Testa conta palavras", "[VerificaPalavras]") {
 	string teste1 = "input1.txt";
 	REQUIRE(VerificaPalavras(teste1) == L"a: 1\né: 1\nEsta: 1\nEste: 1\nlinha: 1\no: 1\nsegunda: 1\ntexto: 1\n");
 
@@ -21,4 +21,15 @@ TEST_CASE("Testa conta palavras", "[single-file]") {
 
 	string teste4 = "input4.txt";
 	REQUIRE(VerificaPalavras(teste4) == L"teste: 1\nTeste: 1\nTESTE: 1\ntEsTe: 1\n");
+
+	string teste5 = "input5.txt";
+	REQUIRE(VerificaPalavras(teste5) == L"teste: 1\ntexto: 1\n");
+}
+
+TEST_CASE("Testa separador de palavras", "[split_string]") {
+	string teste1 = "input1.txt";
+	REQUIRE(split_string(read_file(teste1)).size() == 8);
+
+	string teste5 = "input5.txt";
+	REQUIRE(split_string(read_file(teste5)).size() == 2);
 }

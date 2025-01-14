@@ -7,5 +7,7 @@
 using namespace std;
 
 wstring VerificaPalavras(string arquivo);
+vector<wstring> split_string(string file_contents);
+string read_file(string arquivo);
 
 #endif
