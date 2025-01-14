@@ -73,7 +73,8 @@ wstring VerificaPalavras(string arquivo) {
     sort(palavras.begin(), palavras.end(), comp);
 
     vector<wstring> palavras_contadas;
-    
+    vector<int> numero_palavras;
+
     wstring ans = L"";
     for(wstring i : palavras) {
         ans += i;
