@@ -85,7 +85,8 @@ wstring VerificaPalavras(string arquivo) {
                 break;
             }
         }
-        palavras_contadas.push_back(palavra);
+        if(!ja_contou)
+            palavras_contadas.push_back(palavra);
     }
 
     wstring ans = L"";
