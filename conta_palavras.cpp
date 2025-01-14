@@ -4,29 +4,30 @@
  * \file  conta_palavras.cpp
  */
 
-#include "conta_palavras.hpp"
-
-/** 
- * @brief conta as ocorrências de palavras distintas do texto fornecido
- * @author Elis
- * @param  conta_palavras descreve o parâmetro
- */
+#include "./conta_palavras.hpp"
 
 #include <fstream>
 #include <string>
 #include <vector>
 #include <codecvt>
+#include <algorithm>
+#include <utility>
 
 using namespace std;
 
 wstring_convert<codecvt_utf8<wchar_t>> converter;
 
-string read_file(string arquivo){
+/** 
+ * @brief 
+ * @param  
+ * @return
+ */
+string read_file(string arquivo) {
     ifstream file(arquivo);
     string str;
 
     string file_contents;
-    while(getline(file, str)) {
+    while (getline(file, str)) {
         file_contents += str;
         file_contents.push_back(' ');
     }
@@ -36,19 +37,24 @@ string read_file(string arquivo){
     return file_contents;
 }
 
+/** 
+ * @brief 
+ * @param  
+ * @return
+ */
 vector<wstring> split_string(string texto) {
     int pos = 0;
     char separador = ' ';
-    
+
     vector<wstring> tokens;
     string token;
 
-    while(pos < texto.size()){
+    while (pos < texto.size()) {
         token = "";
-        while(pos < texto.size() and texto[pos] == separador){
+        while (pos < texto.size() && texto[pos] == separador) {
             pos++;
         }
-        while(pos < texto.size() and texto[pos] != separador){
+        while (pos < texto.size() && texto[pos] != separador) {
             token += texto[pos];
             pos++;
         }
@@ -58,31 +64,46 @@ vector<wstring> split_string(string texto) {
     return tokens;
 }
 
+/** 
+ * @brief 
+ * @param  
+ * @return
+ */
 wchar_t remove_acento(wchar_t c) {
-    if(c == L'ã' or c == L'á' or c == L'â' or c == L'à') return L'a';
-    if(c == L'é' or c == L'ê') return L'e';
-    if(c == L'í') return L'i';
-    if(c == L'õ' or c == L'ó' or c == L'ô') return L'o';
-    if(c == L'ú') return L'u';
-    if(c == L'ñ') return L'n';
+    if (c == L'ã' || c == L'á' || c == L'â' || c == L'à') return L'a';
+    if (c == L'é' || c == L'ê') return L'e';
+    if (c == L'í') return L'i';
+    if (c == L'õ' || c == L'ó' || c == L'ô') return L'o';
+    if (c == L'ú') return L'u';
+    if (c == L'ñ') return L'n';
     return c;
 }
 
+/** 
+ * @brief 
+ * @param  
+ * @return
+ */
 bool comp(wstring a, wstring b) {
     wstring comp_a = L"", comp_b = L"";
-    for(wchar_t i : a) {
+    for (wchar_t i : a) {
         comp_a += remove_acento(tolower(i));
     }
-    for(wchar_t i : b) {
+    for (wchar_t i : b) {
         comp_b += remove_acento(tolower(i));
     }
     return(comp_a < comp_b);
 }
 
-wstring format(vector<pair<wstring, int>> palavras_contadas, vector<int> numero_palavras){
+/** 
+ * @brief 
+ * @param  
+ * @return
+ */
+wstring format(vector<pair<wstring, int>> palavras_contadas, vector<int> numero_palavras) {
     wstring ans = L"";
     int aux;
-    for(pair<wstring, int> i : palavras_contadas) {
+    for (pair<wstring, int> i : palavras_contadas) {
         aux = numero_palavras[i.second];
 
         ans += i.first;
@@ -94,7 +115,11 @@ wstring format(vector<pair<wstring, int>> palavras_contadas, vector<int> numero_
     return ans;
 }
 
-
+/** 
+ * @brief Essa é a função principal do código, que chama todas as outras funções. Ela conta as ocorrências de cada palavra em um arquivo .txt fornecido.
+ * @param  
+ * @return 
+ */
 wstring VerificaPalavras(string arquivo) {
     string file_contents = read_file(arquivo);
 
@@ -108,23 +133,23 @@ wstring VerificaPalavras(string arquivo) {
     int index = 0;
     int aux;
 
-    for(wstring palavra : palavras) {
+    for (wstring palavra : palavras) {
         ja_contou = false;
-        for(pair<wstring, int> p : palavras_contadas){
-            if(p.first == palavra){
+        for (pair<wstring, int> p : palavras_contadas) {
+            if (p.first == palavra) {
                 ja_contou = true;
                 aux = p.second;
                 break;
             }
         }
 
-        if(!ja_contou){
+        if (!ja_contou) {
             palavras_contadas.push_back(make_pair(palavra, index));
             numero_palavras.push_back(1);
             index++;
-        }
-        else
+        } else {
             numero_palavras[aux]++;
+        }
     }
 
     return(format(palavras_contadas, numero_palavras));

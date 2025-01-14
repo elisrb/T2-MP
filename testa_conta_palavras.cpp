@@ -4,10 +4,11 @@
  * \file testa_conta_palavras.cpp
  */
 
-#include "conta_palavras.hpp"
+#include <string>
+#include "./conta_palavras.hpp"
 
 #define CATCH_CONFIG_MAIN
-#include "catch.hpp"
+#include "./catch.hpp"
 
 TEST_CASE("Testa conta palavras", "[VerificaPalavras]") {
 	string teste1 = "input1.txt";
@@ -24,7 +25,7 @@ TEST_CASE("Testa conta palavras", "[VerificaPalavras]") {
 
 	string teste5 = "input5.txt";
 	REQUIRE(VerificaPalavras(teste5) == L"teste: 1\ntexto: 1\n");
-	
+
 	string teste6 = "input6.txt";
 	REQUIRE(VerificaPalavras(teste6) == L"all: 3\ni: 1\nit: 1\nremember: 1\ntoo: 1\nwell: 1\n");
 }
