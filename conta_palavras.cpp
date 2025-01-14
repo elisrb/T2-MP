@@ -75,8 +75,15 @@ wstring VerificaPalavras(string arquivo) {
 
     vector<wstring> palavras_contadas;
     vector<int> numero_palavras;
+    bool ja_contou = false;
 
     for(wstring palavra : palavras) {
+        for(wstring p : palavras_contadas){
+            if(p == palavra){
+                ja_contou = true;
+                break;
+            }
+        }
         palavras_contadas.push_back(palavra);
     }
 
