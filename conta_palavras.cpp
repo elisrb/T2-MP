@@ -68,14 +68,17 @@ wstring VerificaPalavras(string arquivo) {
     }
     file_contents.pop_back();
 
-    vector<wstring> tokens = split_string(file_contents);
+    vector<wstring> palavras = split_string(file_contents);
 
-    sort(tokens.begin(), tokens.end(), comp);
+    sort(palavras.begin(), palavras.end(), comp);
 
+    vector<wstring> palavras_contadas;
+    
     wstring ans = L"";
-    for(wstring i : tokens) {
+    for(wstring i : palavras) {
         ans += i;
         ans += L": 1\n";
     }
+
     return(ans);
 }
