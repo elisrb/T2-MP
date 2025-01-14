@@ -74,8 +74,9 @@ wstring VerificaPalavras(string arquivo) {
     sort(palavras.begin(), palavras.end(), comp);
 
     vector<wstring> palavras_contadas;
-    vector<int> numero_palavras;
+    vector<pair<int, int>> indice_numero_palavras;
     bool ja_contou;
+    int index = 0;
 
     for(wstring palavra : palavras) {
         ja_contou = false;
@@ -85,8 +86,10 @@ wstring VerificaPalavras(string arquivo) {
                 break;
             }
         }
-        if(!ja_contou)
+        if(!ja_contou){
             palavras_contadas.push_back(palavra);
+            index++;
+        }
     }
 
     wstring ans = L"";
