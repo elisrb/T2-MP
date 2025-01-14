@@ -157,36 +157,43 @@ wstring format(vector<pair<wstring, int>> palavras_contadas, vector<int> numero_
  * @return wstring  a string da resposta formatada
  */
 wstring VerificaPalavras(string arquivo) {
-    string file_contents = read_file(arquivo);
+    string file_contents = read_file(arquivo);  // lê o arquivo
 
-    vector<wstring> palavras = split_string(file_contents);
+    vector<wstring> palavras = split_string(file_contents);  // separa as palavras
 
-    sort(palavras.begin(), palavras.end(), comp);
+    sort(palavras.begin(), palavras.end(), comp);  // ordena as palavras
 
+    /**
+     * O loop a seguir é responsável por contabilizar as ocorências de cada palavra no texto.
+     * São criados dois vetores:
+     * - palavras_contadas: armazena todas as palavras distintas do texto, em pares com o número correspondente ao seu índice na lista
+     * (para acessar o índice de forma mais fácil ao buscar pela palavra)
+     * - numero_palavras: armazena o número de ocorrências de cada palavra no texto
+    */
     vector<pair<wstring, int>> palavras_contadas;
     vector<int> numero_palavras;
     bool ja_contou;
-    int index = 0;
+    int index = 0;  // armazena o índice atual da lista (número de palavras distintas contadas até agora)
     int aux;
 
-    for (wstring palavra : palavras) {
+    for (wstring palavra : palavras) {  // percorre as palavras lidas, separadas e ordenadas pelas funções anteriores
         ja_contou = false;
         for (pair<wstring, int> p : palavras_contadas) {
-            if (p.first == palavra) {
+            if (p.first == palavra) {  // verifica se a palavra já foi contada
                 ja_contou = true;
-                aux = p.second;
+                aux = p.second;  // guarda o índice correspondente
                 break;
             }
         }
 
-        if (!ja_contou) {
-            palavras_contadas.push_back(make_pair(palavra, index));
-            numero_palavras.push_back(1);
-            index++;
-        } else {
-            numero_palavras[aux]++;
+        if (!ja_contou) {  // caso a palavra ainda não tenha sido contada
+            palavras_contadas.push_back(make_pair(palavra, index));  // adiciona ela à lista
+            numero_palavras.push_back(1);  // até o momento, a palavra só apareceu uma vez
+            index++;  // incrementa o índice
+        } else {  // caso a palavra já esteja na lista
+            numero_palavras[aux]++;  // incrementa o contador de vezes em que ela aparece
         }
     }
 
-    return(format(palavras_contadas, numero_palavras));
+    return(format(palavras_contadas, numero_palavras));  // formata a resposta
 }
