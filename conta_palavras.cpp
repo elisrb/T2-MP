@@ -18,7 +18,7 @@ using namespace std;
 wstring_convert<codecvt_utf8<wchar_t>> converter;
 
 /** 
- * @brief Essa função abre um arquivo .txt e lê o conteúdo
+ * @brief Essa função abre um arquivo .txt e lê o conteúdo dele
  * @param  str  path do arquivo .txt a ser aberto relativa ao diretório do código-fonte
  * @return str  o conteúdo do arquivo (substituindo quebras de linha por espaços)
  */
