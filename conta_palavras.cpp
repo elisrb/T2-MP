@@ -75,6 +75,10 @@ wstring VerificaPalavras(string arquivo) {
     vector<wstring> palavras_contadas;
     vector<int> numero_palavras;
 
+    for(wstring palavra : palavras) {
+        palavras_contadas.push_back(palavra);
+    }
+
     wstring ans = L"";
     for(wstring i : palavras) {
         ans += i;
