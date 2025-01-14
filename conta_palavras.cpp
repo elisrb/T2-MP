@@ -90,15 +90,18 @@ wstring VerificaPalavras(string arquivo) {
 
         if(!ja_contou){
             palavras_contadas.push_back(make_pair(palavra, index));
+            numero_palavras.push_back(1);
             index++;
         }
     }
 
     wstring ans = L"";
+    int cont;
     for(pair<wstring, int> i : palavras_contadas) {
         ans += i.first;
         ans += L": ";
-        ans += converter.from_bytes(to_string(i.second));
+        cont = numero_palavras[i.second];
+        ans += converter.from_bytes(to_string(cont));
         ans += L"\n";
     }
 
