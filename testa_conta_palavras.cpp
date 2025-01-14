@@ -18,4 +18,7 @@ TEST_CASE("Testa conta palavras", "[single-file]") {
 
 	string teste3 = "input3.txt";
 	REQUIRE(VerificaPalavras(teste3) == L"de: 1\nteste: 4\ntexto: 1\n");
+
+	string teste4 = "input4.txt";
+	REQUIRE(VerificaPalavras(teste4) == L"teste: 1\nTeste: 1\nTESTE: 1\ntEsTe: 1\n");
 }

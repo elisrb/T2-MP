@@ -21,6 +21,21 @@ using namespace std;
 
 wstring_convert<codecvt_utf8<wchar_t>> converter;
 
+string read_file(string arquivo){
+    ifstream file(arquivo);
+    string str;
+
+    string file_contents;
+    while(getline(file, str)) {
+        file_contents += str;
+        file_contents.push_back(' ');
+    }
+    file_contents.pop_back();
+    file.close();
+
+    return file_contents;
+}
+
 vector<wstring> split_string(string file_contents) {
     size_t pos = 0;
     string delimiter = " ";
@@ -34,6 +49,7 @@ vector<wstring> split_string(string file_contents) {
         file_contents.erase(0, pos + delimiter.length());
     }
     tokens.push_back(converter.from_bytes(file_contents));
+    
     return tokens;
 }
 
@@ -58,17 +74,24 @@ bool comp(wstring a, wstring b) {
     return(comp_a < comp_b);
 }
 
-wstring VerificaPalavras(string arquivo) {
-    ifstream file(arquivo);
-    string str;
+wstring format(vector<pair<wstring, int>> palavras_contadas, vector<int> numero_palavras){
+    wstring ans = L"";
+    int aux;
+    for(pair<wstring, int> i : palavras_contadas) {
+        aux = numero_palavras[i.second];
 
-    string file_contents;
-    while(getline(file, str)) {
-        file_contents += str;
-        file_contents.push_back(' ');
+        ans += i.first;
+        ans += L": ";
+        ans += converter.from_bytes(to_string(aux));
+        ans += L"\n";
     }
-    file_contents.pop_back();
-    file.close();
+
+    return ans;
+}
+
+
+wstring VerificaPalavras(string arquivo) {
+    string file_contents = read_file(arquivo);
 
     vector<wstring> palavras = split_string(file_contents);
 
@@ -99,14 +122,5 @@ wstring VerificaPalavras(string arquivo) {
             numero_palavras[aux]++;
     }
 
-    wstring ans = L"";
-    for(pair<wstring, int> i : palavras_contadas) {
-        ans += i.first;
-        ans += L": ";
-        aux = numero_palavras[i.second];
-        ans += converter.from_bytes(to_string(aux));
-        ans += L"\n";
-    }
-
-    return(ans);
+    return(format(palavras_contadas, numero_palavras));
 }
