@@ -78,12 +78,14 @@ wstring VerificaPalavras(string arquivo) {
     vector<int> numero_palavras;
     bool ja_contou;
     int index = 0;
+    int aux;
 
     for(wstring palavra : palavras) {
         ja_contou = false;
         for(pair<wstring, int> p : palavras_contadas){
             if(p.first == palavra){
                 ja_contou = true;
+                aux = p.second;
                 break;
             }
         }
@@ -93,15 +95,16 @@ wstring VerificaPalavras(string arquivo) {
             numero_palavras.push_back(1);
             index++;
         }
+        else
+            numero_palavras[aux]++;
     }
 
     wstring ans = L"";
-    int cont;
     for(pair<wstring, int> i : palavras_contadas) {
         ans += i.first;
         ans += L": ";
-        cont = numero_palavras[i.second];
-        ans += converter.from_bytes(to_string(cont));
+        aux = numero_palavras[i.second];
+        ans += converter.from_bytes(to_string(aux));
         ans += L"\n";
     }
 
