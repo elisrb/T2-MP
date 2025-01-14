@@ -67,6 +67,7 @@ wstring VerificaPalavras(string arquivo) {
         file_contents.push_back(' ');
     }
     file_contents.pop_back();
+    file.close();
 
     vector<wstring> palavras = split_string(file_contents);
 
@@ -80,7 +81,7 @@ wstring VerificaPalavras(string arquivo) {
     }
 
     wstring ans = L"";
-    for(wstring i : palavras) {
+    for(wstring i : palavras_contadas) {
         ans += i;
         ans += L": 1\n";
     }
