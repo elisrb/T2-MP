@@ -19,13 +19,14 @@
 
 using namespace std;
 
+wstring_convert<codecvt_utf8<wchar_t>> converter;
+
 vector<wstring> split_string(string file_contents) {
     size_t pos = 0;
     string delimiter = " ";
     
     vector<wstring> tokens;
     wstring token;
-    wstring_convert<codecvt_utf8<wchar_t>> converter;
 
     while((pos = file_contents.find(delimiter)) != string::npos) {
         token = converter.from_bytes(file_contents.substr(0, pos));
@@ -73,29 +74,32 @@ wstring VerificaPalavras(string arquivo) {
 
     sort(palavras.begin(), palavras.end(), comp);
 
-    vector<wstring> palavras_contadas;
-    vector<pair<int, int>> indice_numero_palavras;
+    vector<pair<wstring, int>> palavras_contadas;
+    vector<int> numero_palavras;
     bool ja_contou;
     int index = 0;
 
     for(wstring palavra : palavras) {
         ja_contou = false;
-        for(wstring p : palavras_contadas){
-            if(p == palavra){
+        for(pair<wstring, int> p : palavras_contadas){
+            if(p.first == palavra){
                 ja_contou = true;
                 break;
             }
         }
+
         if(!ja_contou){
-            palavras_contadas.push_back(palavra);
+            palavras_contadas.push_back(make_pair(palavra, index));
             index++;
         }
     }
 
     wstring ans = L"";
-    for(wstring i : palavras_contadas) {
-        ans += i;
-        ans += L": 1\n";
+    for(pair<wstring, int> i : palavras_contadas) {
+        ans += i.first;
+        ans += L": ";
+        ans += converter.from_bytes(to_string(i.second));
+        ans += L"\n";
     }
 
     return(ans);
