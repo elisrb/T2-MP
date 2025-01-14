@@ -24,12 +24,18 @@ TEST_CASE("Testa conta palavras", "[VerificaPalavras]") {
 
 	string teste5 = "input5.txt";
 	REQUIRE(VerificaPalavras(teste5) == L"teste: 1\ntexto: 1\n");
+	
+	string teste6 = "input6.txt";
+	REQUIRE(VerificaPalavras(teste6) == L"all: 3\ni: 1\nit: 1\nremember: 1\ntoo: 1\nwell: 1\n");
 }
 
-TEST_CASE("Testa separador de palavras", "[split_string]") {
+TEST_CASE("Testa leitura e separador de palavras", "[split_string]") {
 	string teste1 = "input1.txt";
 	REQUIRE(split_string(read_file(teste1)).size() == 8);
 
 	string teste5 = "input5.txt";
 	REQUIRE(split_string(read_file(teste5)).size() == 2);
+
+	string teste6 = "input6.txt";
+	REQUIRE(split_string(read_file(teste6)).size() == 8);
 }
