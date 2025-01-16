@@ -1,6 +1,6 @@
 Código desenvolvido para o Trabalho 2 da disciplina Métodos de Programação, no semestre 2024.2 na Universidade de Brasília.
 
-# CONTA PALAVRAS
+# Conta Palavras
 Por: Elis Rodrigues Borges - 231018875
 
 Este projeto tem por objetivo receber um arquivo de texto e contabilizar as ocorrências de cada palavra distinta. Ele foi desenvolvido em C++, utilizando TDD por meio do framework Catch. Para mais informações, acesse a documentação.
