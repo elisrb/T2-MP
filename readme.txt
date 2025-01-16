@@ -16,3 +16,4 @@ cada comando no makefile pode ser executado pelo prompt "make {nome do comando}"
 
 Os diretórios html e latex contêm a documentação do código gerada pelo DoxyGen.
 O diretório gcov contém os arquivos gerados pelo verificador de cobertura.
+O diretório .git contém as informações e logs do repositório.
