@@ -13,6 +13,3 @@ Tendo todas as dependências instaladas e os seguintes arquivos no mesmo diretó
 - valgrind.rpt,
 e os arquivos .txt de input,
 cada comando no makefile pode ser executado pelo prompt "make {nome do comando}" neste diretório.
-
-Os diretórios html e latex contêm a documentação do código gerada pelo DoxyGen.
-O diretório gcov contém os arquivos gerados pelo verificador de cobertura.
